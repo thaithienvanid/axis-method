@@ -1,0 +1,53 @@
+{
+  "name": "axis",
+  "version": "0.0.1",
+  "description": "AXIS-26 reference plugin for Codex: risk-gated spec-driven development with lifecycle guidance, EARS requirements, CWE review, eval authoring, and drift detection.",
+  "author": {
+    "name": "AXIS-26 Reference Implementation",
+    "url": "https://github.com/thaithienvanid/axis-method"
+  },
+  "homepage": "https://github.com/thaithienvanid/axis-method",
+  "repository": "https://github.com/thaithienvanid/axis-method",
+  "license": "Apache-2.0",
+  "keywords": [
+    "axis-26",
+    "codex",
+    "spec-driven-development",
+    "agentic-development",
+    "ai-agents",
+    "ai-coding",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "aider",
+    "agents-md",
+    "skill-md",
+    "ears",
+    "cwe",
+    "evals",
+    "conformance",
+    "risk-management",
+    "software-delivery",
+    "developer-tools"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AXIS-26 Core",
+    "shortDescription": "Run AXIS-26 risk-gated spec-driven development in Codex.",
+    "longDescription": "AXIS-26 Core helps Codex apply the AXIS-26 software-delivery method: Specify, Build, Verify, Deploy, and Observe with repository-canonical Markdown artifacts, risk-gated rigor, EARS requirements, CWE scanning guidance, eval authoring, and drift detection.",
+    "developerName": "AXIS-26 Reference Implementation",
+    "category": "Engineering",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/thaithienvanid/axis-method",
+    "defaultPrompt": [
+      "Run AXIS specify for this change",
+      "Verify this AXIS change",
+      "Audit this repo for AXIS conformance"
+    ],
+    "brandColor": "#2563EB",
+    "screenshots": []
+  }
+}

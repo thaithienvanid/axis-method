@@ -1,0 +1,29 @@
+# Aider configuration for AXIS-26 adoption.
+# Copy to <your-repo>/.aider.conf.yml or run:
+#   ./scripts/init.sh /path/to/your/repo --aider
+
+# Load AXIS-26 governance into every Aider session.
+read:
+  - constitution.md
+  - AGENTS.md
+
+# Conventions file — Aider treats CONVENTIONS.md as authoritative project rules.
+# The init script symlinks CONVENTIONS.md -> AGENTS.md.
+auto-commits: false      # AXIS-26 §6.2 G2 must run before commit
+
+# Lint after edits — wires Aider to the CWE scanner used by Claude Code hooks.
+# A non-zero exit MUST propagate so Aider treats the lint as failed; using
+# `|| echo` would mask the failure and turn G2 Validate into a silent
+# warning. AXIS-26 §6.2 specifies G2 as deterministic with no LLM judgment —
+# either the scanner passes or the commit is blocked.
+auto-lint: true
+lint-cmd: bash -c 'semgrep --quiet --config=.axis/cwe/ --error .'
+
+# Test after edits — feeds G3 Evaluate signals back into Aider's loop.
+auto-test: false         # set true once your eval suite is configured
+test-cmd: bash scripts/run-evals.sh
+
+# Map filenames -> capability when prompting (helps risk routing).
+read-only:
+  - .axis/routing.yaml
+  - .axis/evals/config.yaml

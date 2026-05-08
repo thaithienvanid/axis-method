@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/thaithienvanid/axis-method/security/advisories/new
+    about: Report a security vulnerability privately. Do NOT file a public issue.
+  - name: GitHub Discussions
+    url: https://github.com/thaithienvanid/axis-method/discussions
+    about: Open-ended community discussion not tied to a specific bug, question, or proposal.

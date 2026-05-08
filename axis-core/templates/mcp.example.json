@@ -1,0 +1,48 @@
+{
+  "_README": [
+    "OPTIONAL — DO NOT INSTALL BLINDLY.",
+    "",
+    "These are PAID third-party services. The axis-core plugin does not require",
+    "any of them. Enable individually only if your organization already uses the",
+    "vendor and you have an account / API key.",
+    "",
+    "To use a server: copy ONE of the entries below into your project's",
+    "./.mcp.json (NOT into the plugin), set the env var, and reload Claude Code.",
+    "",
+    "AXIS-26 principle 5: tool-portable, vendor-replaceable. None of these",
+    "vendors is endorsed; substitutes are listed in Appendix D.3.",
+    "",
+    "All server packages below must exist and be installable from npm.",
+    "Verify the package name and command flags against current vendor docs",
+    "before depending on them in CI."
+  ],
+  "mcpServers": {
+    "linear": {
+      "command": "npx",
+      "args": ["-y", "@linear/mcp-server"],
+      "env": {
+        "LINEAR_API_KEY": "${LINEAR_API_KEY}"
+      },
+      "_purpose": "Optional gateway sync (AXIS-26 §7.3). Repository remains canonical.",
+      "_alternatives": "Jira, GitHub Projects, none (repo is sufficient)."
+    },
+    "braintrust": {
+      "command": "npx",
+      "args": ["-y", "@braintrustdata/mcp-server"],
+      "env": {
+        "BRAINTRUST_API_KEY": "${BRAINTRUST_API_KEY}"
+      },
+      "_purpose": "Eval infrastructure for G3 Evaluate (AXIS-26 §8.1, §8.2).",
+      "_alternatives": "Promptfoo (open source, free), LangSmith, Helicone, Langfuse, local pytest/jest."
+    },
+    "snyk": {
+      "command": "npx",
+      "args": ["-y", "snyk-mcp-server"],
+      "env": {
+        "SNYK_TOKEN": "${SNYK_TOKEN}"
+      },
+      "_purpose": "SAST/DAST integration for G2 Validate deterministic checks (AXIS-26 §6.2).",
+      "_alternatives": "Semgrep (open source, free) — already used by hooks/pre-tool-use-cwe.sh; CodeQL; Sonar."
+    }
+  }
+}

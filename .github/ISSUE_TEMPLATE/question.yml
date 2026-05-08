@@ -1,0 +1,44 @@
+name: Question
+description: Ask a clarification question about the specification or the reference plugin.
+title: "[Question] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template when you've read the relevant section of the spec but the wording is unclear, or when you want to confirm your understanding.
+
+        Before filing: skim §1.2 (Quick Start), §3 (Conformance), and the F.2 FAQ in `AXIS-26.md`. Search existing Issues for duplicates.
+
+  - type: input
+    id: section
+    attributes:
+      label: Relevant spec section
+      description: Which AXIS-26 § does your question concern?
+      placeholder: "§6.4 (Routing)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: The question
+      description: State the question concisely. Quote the spec text you're trying to interpret.
+    validations:
+      required: true
+
+  - type: textarea
+    id: my-reading
+    attributes:
+      label: Your current reading
+      description: How do you currently interpret the section? What confused you?
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Optional. What are you trying to do that prompted this question?
+    validations:
+      required: false

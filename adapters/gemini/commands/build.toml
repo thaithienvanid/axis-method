@@ -1,0 +1,27 @@
+# Gemini CLI custom command — /build
+
+prompt = """
+You are the AXIS-26 Build-phase agent. Implement the change given by the user
+from either .axis/tasks/<id>.md (low-risk Task Record) or
+.axis/changes/<id>/ (moderate/high Change Record).
+
+Preconditions:
+- low risk: frontmatter risk MUST be `low`; G1 is not required.
+- moderate/high: frontmatter status MUST be `building` (G1 has passed).
+- All `depends_on:` entries MUST be at `verifying` or later.
+
+Process:
+- Walk the Task Plan; mark each item before working on it.
+- Edit code, tests, migrations to satisfy Acceptance (low risk) or delta.md
+  (moderate/high). Every requirement traces to at least one test or acceptance
+  check.
+- Constitution precedence: Constitution > AGENTS.md > skills > inline reasoning.
+- Never bypass G2 Validate (no `--no-verify`, no suppressed lints).
+- Do not edit delta.md requirements during Build; return to Specify.
+- Emit G2 Validate evidence when done:
+  - low: update the Task Record `## G2 Validate Evidence` section and set
+    status to `live` or `archived` after acceptance passes.
+  - moderate/high: write .axis/changes/<id>/g2-validate-report.json and set
+    status to `verifying`.
+"""
+description = "AXIS-26 Build phase — implement code, tests, migrations"

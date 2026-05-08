@@ -1,0 +1,78 @@
+name: Proposal seed
+description: Early-stage idea for a substantive change to the specification, before filing a full AP.
+title: "[Proposal] "
+labels: ["proposal-seed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template **before** filing a formal AXIS Proposal (AP). The goal is to get early feedback so the eventual AP — if filed — is well-shaped.
+
+        If your change is purely editorial (typo, formatting, clarification of unambiguous wording), file a PR directly instead. See [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Change type
+      options:
+        - New normative clause (will require reference implementation)
+        - Modify meaning of an existing MUST/SHALL/SHOULD/MAY clause
+        - Add a new schema field (Appendix A)
+        - Remove or deprecate a clause (will require migration path)
+        - MAJOR-version bump candidate
+        - Other substantive change
+    validations:
+      required: true
+
+  - type: input
+    id: targets
+    attributes:
+      label: Spec section(s) targeted
+      description: Which §s or appendices does this affect?
+      placeholder: "§6.4, §8.2, A.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: What problem are you trying to solve? Why does the current spec fall short?
+    validations:
+      required: true
+
+  - type: textarea
+    id: sketch
+    attributes:
+      label: Proposal sketch
+      description: Outline the change at a high level. Exact wording is not required at this stage.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What other approaches did you evaluate? Why are they worse?
+    validations:
+      required: false
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation feasibility
+      description: Have you prototyped this? Can you commit to authoring a reference implementation if needed?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I have read AXIS-26 §9 (Versioning and Governance).
+          required: true
+        - label: I searched existing Issues and APs to avoid duplication.
+          required: true
+        - label: I understand that substantive proposals advance via the AP process described in CONTRIBUTING.md.
+          required: true

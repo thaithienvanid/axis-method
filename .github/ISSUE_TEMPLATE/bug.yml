@@ -1,0 +1,81 @@
+name: Bug
+description: Report a defect in the AXIS-26 specification or the axis-core reference plugin (contradiction, ambiguity, broken cross-reference, schema error, hook crash).
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. Please complete the form below.
+
+        For **security vulnerabilities**, do **not** file a public issue — see [SECURITY.md](../blob/main/SECURITY.md) for the private disclosure process.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Where does this bug live?
+      options:
+        - Specification text (AXIS-26.md)
+        - Plugin manifest / hooks / commands (axis-core/)
+        - Templates (axis-core/templates/)
+        - Tool adapters (adapters/cursor, codex, gemini, aider)
+        - Bootstrap script (scripts/init.sh)
+        - Documentation (docs/, README.md, CONTRIBUTING.md)
+        - Other / unsure
+    validations:
+      required: true
+
+  - type: input
+    id: section
+    attributes:
+      label: Spec section / file path
+      description: Cite the AXIS-26 § or the file path. Example "§6.4" or "axis-core/hooks/post-tool-use-route.sh:74".
+      placeholder: "§6.4"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What's wrong
+      description: Describe the contradiction, ambiguity, error, or unexpected behavior. Quote the offending text where applicable.
+      placeholder: "Section 6.4 says X, but Section 8.2 says Y. These are inconsistent because..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior or wording
+      description: What should it say or do instead?
+    validations:
+      required: false
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction (for plugin/script bugs only)
+      description: Minimal steps to reproduce. Include OS, shell, Claude Code / agent version, and exact command.
+      render: shell
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: AXIS-26 spec version and/or plugin version. Use `git rev-parse --short HEAD` if you don't know.
+      placeholder: "AXIS-26 v1.0 / axis-core 1.0.0 / commit abc1234"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I searched existing Issues and APs to avoid duplication.
+          required: true
+        - label: This is not a security vulnerability (those go through SECURITY.md).
+          required: true

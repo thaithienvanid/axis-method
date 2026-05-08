@@ -1,0 +1,18 @@
+{
+  "change_id": "2026-05-001-example",
+  "gate": "G2",
+  "risk": "moderate",
+  "decision": "pass",
+  "generated_at": "2026-05-08T00:00:00Z",
+  "tool": "axis-core",
+  "checks": [
+    {
+      "name": "cwe-semgrep",
+      "type": "security",
+      "decision": "pass",
+      "command": "semgrep --config=.axis/cwe/ --error <files>",
+      "evidence": "0 findings"
+    }
+  ],
+  "blocking_findings": []
+}

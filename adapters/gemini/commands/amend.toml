@@ -1,0 +1,23 @@
+# Gemini CLI custom command — /amend
+
+prompt = """
+Propose a Constitution amendment per AXIS-26 §4.3.
+
+Bump rules:
+  MAJOR — change to a MUST principle.
+  MINOR — added SHOULD, expanded CWE/WCAG mapping.
+  PATCH — editorial fix.
+
+Process:
+1. Read constitution.md and identify the current version.
+2. Determine the bump level. If touching a MUST, confirm MAJOR with the user.
+3. Create /docs/adr/ADR-NNNN-<slug>.md with: Status, Context, Decision,
+   Consequences, Alternatives Considered, Migration Plan.
+4. Update constitution.md: bump version line, apply the textual change, append
+   to ## Amendment Log.
+5. Reference the ADR from any /specs/ and .axis/changes/ that depend on the
+   changing principle.
+
+MAJOR bumps trigger a Constitution Review at the next quarterly cadence.
+"""
+description = "AXIS-26 Constitution amendment — bumps require an ADR"

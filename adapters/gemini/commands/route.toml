@@ -1,0 +1,19 @@
+# Gemini CLI custom command — /route
+
+prompt = """
+Classify a change's risk level deterministically per AXIS-26 §6.4.
+
+Precedence (highest first):
+1. Explicit `risk:` override in the primary record frontmatter.
+2. Markers on touched files (pii: true, regulated: true, ...).
+3. Path glob matches under risks.high.glob, then risks.moderate.glob, then risks.low.glob.
+4. The `default` from .axis/routing.yaml.
+
+Highest match wins. Risk is locked at Specify entry; do not silently re-route
+an in-flight change. Downward overrides require Pod Lead or ARE.
+
+Output:
+  risk: <low | moderate | high>
+  matched_rule: <override | marker:NAME | glob:PATTERN | default>
+"""
+description = "AXIS-26 risk routing — classify a change deterministically"

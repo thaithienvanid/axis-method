@@ -1,0 +1,64 @@
+{
+  "name": "axis",
+  "version": "0.0.1",
+  "description": "AXIS-26 reference plugin for risk-gated spec-driven development: Specify, Build, Verify, Deploy, Observe with Constitution/AGENTS context, EARS requirements, CWE checks, eval gates, and drift detection. Implements Appendix C of AXIS-26 v0.0.1.",
+  "author": {
+    "name": "AXIS-26 Reference Implementation"
+  },
+  "homepage": "https://github.com/thaithienvanid/axis-method",
+  "license": "Apache-2.0",
+  "keywords": [
+    "axis-26",
+    "spec-driven-development",
+    "agentic-development",
+    "ai-agents",
+    "ai-coding",
+    "claude-code",
+    "claude-code-plugin",
+    "codex",
+    "cursor",
+    "gemini-cli",
+    "aider",
+    "agents-md",
+    "skill-md",
+    "ears",
+    "cwe",
+    "evals",
+    "conformance",
+    "risk-management",
+    "software-delivery",
+    "developer-tools"
+  ],
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {"type": "command", "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh"}
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {"type": "command", "command": "${CLAUDE_PLUGIN_ROOT}/hooks/pre-tool-use-cwe.sh"}
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {"type": "command", "command": "${CLAUDE_PLUGIN_ROOT}/hooks/post-tool-use-route.sh"}
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {"type": "command", "command": "${CLAUDE_PLUGIN_ROOT}/hooks/stop-eval-gate.sh"}
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+# AXIS-26 routing.yaml — Appendix A.1 schema, Appendix B.4 reference
+# Drop at .axis/routing.yaml in the target repository.
+version: "0.0.1"
+default: moderate
+
+risks:
+  low:
+    glob: ["docs/**", "scripts/dev/**", "*.md", "internal/admin/**"]
+    eval_threshold: 0.95
+    auto_merge: true
+    environments: [prod]
+  moderate:
+    glob: ["src/**", "app/**", "packages/**"]
+    eval_threshold: 0.98
+    require_review: true
+    environments: [staging, prod]
+  high:
+    glob: ["auth/**", "billing/**", "infra/terraform/**", "migrations/**", "services/payments/**"]
+    markers: ["pii: true", "regulated: true"]
+    eval_threshold: 0.995
+    require_security_adr: true
+    require_two_key: true
+    environments: [staging, canary, prod]
+
+environments:
+  staging:
+    auto_promote: true
+    eval_threshold: 0.95
+  canary:
+    auto_promote: false
+    traffic_percent: 5
+    soak_duration: PT30M
+    eval_threshold: 0.98
+  prod:
+    auto_promote: false
+    traffic_percent: 100
+    eval_threshold: 0.99
+    require_approval: [pod_lead]
+
+precedence: highest_risk_wins
+override_policy:
+  upward_allowed: any_pod_member
+  downward_allowed: [pod_lead, are]
+  emergency_path: true

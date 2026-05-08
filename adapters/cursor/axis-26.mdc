@@ -1,0 +1,63 @@
+---
+description: AXIS-26 v0.0.1 governance — Constitution, AGENTS.md, and risk routing
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# AXIS-26 v0.0.1 — Cursor adapter
+
+This rule loads the AXIS-26 control plane into every Cursor session.
+
+## Project authority
+
+The project is governed by **`./constitution.md`** (versioned, machine-readable). All MUST principles in the Constitution are non-negotiable. Constitutional violations block G2 Validate.
+
+## Risk routing
+
+Every change has a deterministic **risk level** (low / moderate / high) set by `.axis/routing.yaml` per AXIS-26 §6.4. Apply this precedence (highest first):
+
+1. Explicit `risk:` override in the primary record frontmatter.
+2. Markers on touched files (`pii: true`, `regulated: true`, …).
+3. Path glob matches under `risks.high.glob`, then `risks.moderate.glob`, then `risks.low.glob`.
+4. The `default` risk level.
+
+Highest match wins. Risk is locked at Specify entry; do not silently re-route.
+
+## Lifecycle
+
+Five phases, three gates:
+
+- **Specify** → G1 Approve (moderate/high) or Task Record accepted (low) → **Build**
+- **Build** → G2 Validate (deterministic checks, CWE scan) → **Verify**
+- **Verify** → G3 Evaluate (eval suite + constitutional scan) → **Deploy**; low risk may advance directly after inline G2 + acceptance.
+- **Deploy** (walks environment list per `routing.yaml`) → **Observe**
+
+Reference `AGENTS.md` for tool-specific commands, skills, and don'ts.
+
+## Don'ts
+
+- Never bypass G2 Validate (`--no-verify`, suppressed lints).
+- Never edit `delta.md` requirements during Build — go back to Specify.
+- Never single-person-approve a `risk: high` change at G1.
+- Never make a SaaS gateway authoritative for status — repository state is canonical (§7.3).
+
+## Brownfield delta
+
+Express changes as deltas against `/specs/<cap>/spec.md` using exactly these markers (§6.6):
+
+- `### ADDED Requirement REQ-NNN` — new, with stable ID.
+- `### MODIFIED Requirement REQ-NNN` — change to existing; cite ID.
+- `### REMOVED Requirement REQ-NNN` — removal; cite ID, link deprecation ADR.
+
+Use EARS templates (Mavin 2009): Ubiquitous, Event-Driven, State-Driven, Unwanted-Behavior, Optional.
+
+## Where to look
+
+- `constitution.md` — MUST/SHOULD/MAY + CWE/WCAG mappings.
+- `AGENTS.md` — tool-portable agent context.
+- `.axis/routing.yaml` — risk classification.
+- `.axis/changes/<id>/` — moderate/high Change Records (proposal, delta, design, Task Plan, evals).
+- `.axis/tasks/<id>.md` — low-risk Task Records.
+- `/specs/<cap>/spec.md` — capability specs.
+
+Full specification: [`AXIS-26.md`](mdc:AXIS-26.md).

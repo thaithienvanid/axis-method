@@ -1,0 +1,20 @@
+{
+  "name": "axis-method",
+  "interface": {
+    "displayName": "AXIS Method"
+  },
+  "plugins": [
+    {
+      "name": "axis",
+      "source": {
+        "source": "local",
+        "path": "./axis-core"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Engineering"
+    }
+  ]
+}

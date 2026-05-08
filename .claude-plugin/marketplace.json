@@ -1,0 +1,39 @@
+{
+  "name": "axis-method",
+  "owner": {
+    "name": "thaithienvanid"
+  },
+  "plugins": [
+    {
+      "name": "axis",
+      "source": "./axis-core",
+      "description": "AXIS-26 v0.0.1 reference plugin for risk-gated spec-driven development: Specify, Build, Verify, Deploy, Observe with Constitution/AGENTS context, EARS requirements, CWE checks, eval gates, and drift detection.",
+      "version": "0.0.1",
+      "license": "Apache-2.0",
+      "homepage": "https://github.com/thaithienvanid/axis-method",
+      "category": "spec-driven-development",
+      "keywords": [
+        "axis-26",
+        "spec-driven-development",
+        "agentic-development",
+        "ai-agents",
+        "ai-coding",
+        "claude-code",
+        "claude-code-plugin",
+        "codex",
+        "cursor",
+        "gemini-cli",
+        "aider",
+        "agents-md",
+        "skill-md",
+        "ears",
+        "cwe",
+        "evals",
+        "conformance",
+        "risk-management",
+        "software-delivery",
+        "developer-tools"
+      ]
+    }
+  ]
+}

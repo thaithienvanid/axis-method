@@ -1,0 +1,43 @@
+# .axis/evals/config.yaml — project-wide eval thresholds (§8.2)
+# Floors per AXIS-26 §8.2; implementations MAY raise, MUST NOT lower.
+
+runner: braintrust            # braintrust | promptfoo | pytest | jest
+
+thresholds:
+  low:
+    behavior_pass_rate: 0.95
+    must_violations: 0
+  moderate:
+    behavior_pass_rate: 0.98
+    latency_p95_drift_pct: 0.10
+    must_violations: 0
+    should_requires_adr: true
+  high:
+    behavior_pass_rate: 0.995
+    latency_p95_drift_pct: 0.05
+    must_violations: 0
+    cwe_top25_clear: true
+    threat_model_signed: true
+    canary_stable: true
+
+rerun_policy:
+  # §8.3: low-risk Task Records do not require G3 Evaluate. If optional
+  # low-risk evals are run, N=1 is acceptable. N≥3 is RECOMMENDED at risk high.
+  # No floor for moderate — set per project. The values below are a defensible default
+  # (project override that exceeds the spec floor); reduce moderate to 1 if cost matters
+  # and document the trade-off in an ADR.
+  low: 1
+  moderate: 3
+  high: 3
+  decision: median            # median pass rate decides per §8.3
+
+categories:
+  - functional
+  - security
+  - performance
+  - accessibility
+  - drift
+
+llm_judge:
+  kappa_validation: quarterly
+  eval_of_evals: quarterly

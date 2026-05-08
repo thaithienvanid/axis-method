@@ -1,0 +1,38 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Node (used by some MCP servers if users opt in)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python (used by hooks helpers if users opt in)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Project-canonical control plane in CONSUMER repos lives at .axis/
+# (this repo is the spec, not a consumer; nothing to ignore at root)
+
+# Generated artifacts
+*.log
+coverage/
+.cache/

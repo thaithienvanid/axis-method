@@ -1,0 +1,20 @@
+{
+  "change_id": "2026-05-001-example",
+  "gate": "G3",
+  "risk": "moderate",
+  "decision": "pass",
+  "generated_at": "2026-05-08T00:00:00Z",
+  "runner": "promptfoo",
+  "rerun_count": 3,
+  "behavior_pass_rate": 0.99,
+  "threshold": 0.98,
+  "latency_p95_drift_pct": 0.03,
+  "constitutional_scan": {
+    "must_violations": 0,
+    "should_violations": 0,
+    "cwe_top25_clear": true,
+    "threat_model_signed": true,
+    "canary_stable": true
+  },
+  "runs": []
+}

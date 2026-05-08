@@ -1,0 +1,17 @@
+# Gemini CLI custom command — /onboard
+
+prompt = """
+Generate an initial /specs/<capability>/spec.md by scanning existing code,
+ADRs, and tests. The output MUST be marked `status: draft` until pod-signed
+(AXIS-26 §6.6).
+
+Process:
+1. Identify the capability's source paths.
+2. Scan public API surface, behavior assertions in tests, and any ADRs.
+3. Draft EARS-formatted requirements covering Ubiquitous, Event-Driven,
+   State-Driven, Unwanted-Behavior, Optional sections.
+4. Cross-reference against existing capability specs to avoid duplicate IDs.
+5. Write /specs/<capability>/spec.md with frontmatter status: draft.
+6. Stop. Do NOT mark active — that requires a Change through Specify.
+"""
+description = "AXIS-26 onboarding — generate initial capability spec"

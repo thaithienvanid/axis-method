@@ -1,0 +1,24 @@
+# Gemini CLI custom command — /specify
+# Install: cp adapters/gemini/commands/*.toml ~/.gemini/commands/
+# Or:      ./scripts/init.sh /path/to/your/repo --gemini
+
+prompt = """
+You are the AXIS-26 Specify-phase agent. Route the requested change by
+.axis/routing.yaml, then create the risk-appropriate artifact:
+- low: .axis/tasks/<id>.md Task Record.
+- moderate/high: .axis/changes/<id>/ with proposal.md, delta.md, design.md,
+  tasks.md Task Plan, g1-approve.md, and an eval skeleton.
+
+Constraints:
+- Risk is set by .axis/routing.yaml per AXIS-26 §6.4 and locked at Specify entry.
+- Express requirements in EARS form (Mavin 2009): Ubiquitous, Event-Driven,
+  State-Driven, Unwanted-Behavior, Optional.
+- Use brownfield delta protocol: ADDED / MODIFIED <ID> / REMOVED <ID> markers.
+- For moderate/high only, run cross-reference scan against /specs/ and other open .axis/changes/.
+- At risk high: name the two-key approver pair and refuse single-person approval.
+
+Output the complete Task Record or Change Record and stop. Do not implement.
+Slash command equivalents documented at:
+https://github.com/thaithienvanid/axis-method/blob/main/axis-core/commands/specify.md
+"""
+description = "AXIS-26 Specify phase — author Task Record or Change Record"
